@@ -1,13 +1,17 @@
 <html>
-    <head>
-        <title>Snake Game</title>
-        <style>
-            canvas{
-                display: block;
-                margin: 0 auto;
-            }
-        </style>
-    </head>
-    <canvas id="snake" width="608" height="608"></canvas>
-    <script src="snake.js"></script>
+  <head>
+    <title>Snake Game</title>
+    <style>
+      canvas {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <canvas id="snake" width="608" height="608"></canvas>
+  <div class="image"></div>
+  <script type="module" src="snake.js"></script>
+  <script type="module" src="image.js"></script>
+  <script type="module" src="keys.js"></script>
 </html>

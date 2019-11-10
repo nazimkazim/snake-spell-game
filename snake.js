@@ -3,6 +3,7 @@ Create by Learn Web Developement
 Youtube channel : https://www.youtube.com/channel/UC8n8ftV94ZU_DJLOLtrpORA
 */
 
+import { getImage } from "./image.js";
 const cvs = document.getElementById("snake");
 const ctx = cvs.getContext("2d");
 
@@ -27,11 +28,15 @@ let up = new Audio();
 let right = new Audio();
 let left = new Audio();
 let down = new Audio();
+let bonus = new Audio();
+let levelWin = new Audio();
 
 dead.src = "audio/dead.mp3";
 eat.src = "audio/eat.mp3";
 up.src = "audio/up.mp3";
 right.src = "audio/right.mp3";
+bonus.src = "audio/bonus.wav";
+levelWin.src = "audio/level-win.wav";
 left.src = "audio/left.mp3";
 down.src = "audio/down.mp3";
 
@@ -40,6 +45,7 @@ down.src = "audio/down.mp3";
 let snake = [];
 let wrd = "graduation";
 let word = wrd.split("");
+let wordSecret = "";
 let oldPositions = [];
 
 snake[0] = {
@@ -139,7 +145,8 @@ function draw() {
   // if the snake eats the food
   if (snakeX == food.x && snakeY == food.y) {
     score++;
-    eat.play();
+    wordSecret += wrd[score - 1];
+    bonus.play();
     oldPositions.unshift({ x: food.x, y: food.y });
     word.shift();
 
@@ -175,11 +182,20 @@ function draw() {
     dead.play();
   }
 
+  if (wrd.length === score) {
+    ctx.fillStyle = "white";
+    ctx.font = "45px Changa one";
+    ctx.fillText("Victory", 10 * box, 1.6 * box);
+    clearInterval(game);
+    levelWin.play();
+    getImage(wrd);
+  }
+
   snake.unshift(newHead);
 
   ctx.fillStyle = "white";
   ctx.font = "45px Changa one";
-  ctx.fillText(score, 2 * box, 1.6 * box);
+  ctx.fillText(wordSecret, 2 * box, 1.6 * box);
 }
 
 // call draw function every 100 ms
