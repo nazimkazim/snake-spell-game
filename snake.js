@@ -43,7 +43,7 @@ down.src = "audio/down.mp3";
 // create the snake
 
 let snake = [];
-let wrd = "graduation";
+let wrd = "happy";
 let word = wrd.split("");
 let wordSecret = "";
 let oldPositions = [];
@@ -196,6 +196,7 @@ function draw() {
   ctx.fillStyle = "white";
   ctx.font = "45px Changa one";
   ctx.fillText(wordSecret, 2 * box, 1.6 * box);
+  ctx.fillText(score, 15 * box, 1.6 * box);
 }
 
 // call draw function every 100 ms
